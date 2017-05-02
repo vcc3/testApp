@@ -49,6 +49,43 @@ require('layout/header.php');
         </div>
         <!-- /.container -->
     </nav>
+    
+    
+      <?php
+         if(isset($_POST['update'])) {
+        
+            
+          $servername = "sql1.njit.edu";
+          $username = "vcc3";
+          $password = "4aYwK2YO";
+          $dbname = "vcc3";
+
+          // Create connection
+          $conn = mysqli_connect($servername, $username, $password, $dbname);
+          // Check connection
+          if (!$conn) {
+              die("Connection failed: " . mysqli_connect_error());
+          }
+              $user=$_SESSION['username'];              
+              $url=mysqli_real_escape_string($conn,$_POST['url']);
+          
+         
+          $sql = "INSERT INTO video (username,url)VALUES ('$user', '$url')";
+          
+          if (mysqli_query($conn, $sql)) {
+              echo "Record updated successfully";
+              header('Location:myVideo.php');
+          } else {
+              echo "Error updating record: " . mysqli_error($conn);
+          }
+          
+
+mysqli_close($conn);
+}
+?>
+         
+    
+    
 	  <!-- Page Content -->
     <div class="container">
 
@@ -69,9 +106,22 @@ require('layout/header.php');
                 <div class="caption">
                   <p>How to Install GCC</p>
                   <p>
+                  
                     <button>Add to my list!</button>
                     
                   </p>
+                  
+                   <form method = "post" action = "<?php $_PHP_SELF ?>">
+                    <input type="hidden" name="url" id ="url" value="c1.php">
+                    <input name = "update" type = "submit"  id = "update" value = "Update"> 
+                   </form>
+                                    
+                  
+                  
+                  
+                  
+                  
+                  
                 </div>
             </div>
         </div>

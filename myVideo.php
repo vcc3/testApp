@@ -53,7 +53,7 @@ require('layout/header.php');
     <!-- Page Content -->
     <div class="container">
                                       
-                               <h2>Profile Page - Welcome <?php echo $_SESSION['username']; ?></h2>                              
+                               <h2>Saved Videos Library. - Hello there <?php echo $_SESSION['username']; ?></h2>                              
                                     
                                     <a href ='editprofile.php'>Edit Profile</a>
                 
@@ -68,20 +68,19 @@ require('layout/header.php');
                                 }
                                 $user = $_SESSION['username'];
                                 //look at th euser logged in and show
-                                $result = mysqli_query($con,"SELECT * FROM members WHERE username ='$user'");
+                                $result = mysqli_query($con,"SELECT * FROM video WHERE username ='$user'");
                                 
                                
                                                                
                                 while($row = mysqli_fetch_array($result))                               
                                
                                   {
-                                  echo "<img width='100px' height='100px' src='img/".$row['profilepic']."'>";                              						              
-                                  echo "<p>Users memberID :"  . $row['memberID']  . "</p>";
-                                  echo "<p>Username is :"     . $row['username']  . "</p>";
-                                  echo "<p>Users email is :"  . $row['email']     . "</p>";
-                                  echo "<p>First Name:"       . $row['first_name']. "</p>";
-                                  echo "<p>Last Name:"        . $row['last_name'] . "</p>";
-                                  echo "<p>Age:"              . $row['age']       . "</p>";  
+                                                           						              
+                                   echo "<p>Saved Video :<a href=" .$row['url']. "></a> </p>";
+                                     // echo "<p>Users memberID :"  . $row['memberID']  . "</p>";
+                                 
+                                 
+                                   
 								                  
                                   }
                                 
