@@ -66,11 +66,12 @@ require('layout/header.php');
           if (!$conn) {
               die("Connection failed: " . mysqli_connect_error());
           }
-              $user=$_SESSION['username'];              
-              $url=mysqli_real_escape_string($conn,$_POST['url']);
+              $user=$_SESSION['username'];   
+              $videoName  =mysqli_real_escape_string($conn,$_POST['videoname']);          
+              $url        =mysqli_real_escape_string($conn,$_POST['url']);
           
          
-          $sql = "INSERT INTO video (username,url)VALUES ('$user', '$url')";
+          $sql = "INSERT INTO video (username,url,videoname)VALUES ('$user', '$url','$videoName')";
           
           if (mysqli_query($conn, $sql)) {
               echo "Record updated successfully";
@@ -105,15 +106,12 @@ mysqli_close($conn);
                 <blockquote class="embedly-card"><h4><a href="https://www.youtube.com/watch?v=8Ib7nwc33uA&list=PLGLfVvz_LVvSaXCpKS395wbCcmsmgRea7&index=1">How to Install GCC</a></h4></blockquote>
                 <div class="caption">
                   <p>How to Install GCC</p>
-                  <p>
                   
-                    <button>Add to my list!</button>
-                    
-                  </p>
                   
                    <form method = "post" action = "<?php $_PHP_SELF ?>">
                     <input type="hidden" name="url" id ="url" value="c1.php">
-                    <input name = "update" type = "submit"  id = "update" value = "Update"> 
+                    <input type="hidden" name="videoname" id ="videoname" value=" How to Install GCC">
+                    <input name = "update" type = "submit"  id = "update" value = "Add to my list!"> 
                    </form>
                                     
                   

@@ -49,14 +49,51 @@ require('layout/header.php');
         </div>
         <!-- /.container -->
     </nav>
+    
+    
+    
+    <?php
+         if(isset($_POST['update'])) {
+        
+            
+          $servername = "sql1.njit.edu";
+          $username = "vcc3";
+          $password = "4aYwK2YO";
+          $dbname = "vcc3";
+
+          // Create connection
+          $conn = mysqli_connect($servername, $username, $password, $dbname);
+          // Check connection
+          if (!$conn) {
+              die("Connection failed: " . mysqli_connect_error());
+          }
+              $user=$_SESSION['username'];   
+              $videoName  =mysqli_real_escape_string($conn,$_POST['videoname']);          
+              $url        =mysqli_real_escape_string($conn,$_POST['url']);
+          
+         
+          $sql = "INSERT INTO video (username,url,videoname)VALUES ('$user', '$url','$videoName')";
+          
+          if (mysqli_query($conn, $sql)) {
+              echo "Record updated successfully";
+              header('Location:myVideo.php');
+          } else {
+              echo "Error updating record: " . mysqli_error($conn);
+          }
+          
+
+mysqli_close($conn);
+}
+?>
+         
 	  <!-- Page Content -->
     <div class="container">
 
         <!-- Page Heading -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">C
-                    <small>How to Install GCC</small>
+                <h1 class="page-header">Java
+                    <small>Java Tutorial For Beginners 2</small>
                 </h1>
             </div>
         </div>
@@ -68,10 +105,13 @@ require('layout/header.php');
                 <blockquote class="embedly-card"><h4><a href="https://www.youtube.com/watch?v=gzlhm0jco0g&list=PLS1QulWo1RIbfTjQvTdj8Y6yyq4R7g-Al&index=2">Java Tutorial For Beginners 2 - Installing Eclipse IDE and Setting up Eclipse</a></h4></blockquote>
                 <div class="caption">
                   <p>Java Tutorial For Beginners 2 - Installing Eclipse IDE and Setting up Eclipse</p>
-                  <p>
-                    <button>Add to my list!</button>
-                   
-                  </p>
+                 
+                 
+                  <form method = "post" action = "<?php $_PHP_SELF ?>">
+                    <input type="hidden" name="url" id ="url" value="java2.php">
+                    <input type="hidden" name="videoname" id ="videoname" value=" Java Tutorial For Beginners 2">
+                    <input name = "update" type = "submit"  id = "update" value = "Add to my list!"> 
+                   </form>
                 </div>
             </div>
         </div>

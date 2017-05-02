@@ -49,14 +49,50 @@ require('layout/header.php');
         </div>
         <!-- /.container -->
     </nav>
+    
+    
+    <?php
+         if(isset($_POST['update'])) {
+        
+            
+          $servername = "sql1.njit.edu";
+          $username = "vcc3";
+          $password = "4aYwK2YO";
+          $dbname = "vcc3";
+
+          // Create connection
+          $conn = mysqli_connect($servername, $username, $password, $dbname);
+          // Check connection
+          if (!$conn) {
+              die("Connection failed: " . mysqli_connect_error());
+          }
+              $user=$_SESSION['username'];   
+              $videoName  =mysqli_real_escape_string($conn,$_POST['videoname']);          
+              $url        =mysqli_real_escape_string($conn,$_POST['url']);
+          
+         
+          $sql = "INSERT INTO video (username,url,videoname)VALUES ('$user', '$url','$videoName')";
+          
+          if (mysqli_query($conn, $sql)) {
+              echo "Record updated successfully";
+              header('Location:myVideo.php');
+          } else {
+              echo "Error updating record: " . mysqli_error($conn);
+          }
+          
+
+mysqli_close($conn);
+}
+?>
+         
 	  <!-- Page Content -->
     <div class="container">
 
         <!-- Page Heading -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">C
-                    <small>How to Install GCC</small>
+                <h1 class="page-header">Python
+                    <small>Installing Python 3 - How to install/use both Python 2 and Python 3</small>
                 </h1>
             </div>
         </div>
@@ -68,10 +104,11 @@ require('layout/header.php');
                 <blockquote class="embedly-card"><h4><a href="https://www.youtube.com/watch?v=IX6mc9l6tY4&list=PLQVvvaa0QuDe8XSftW-RAxdo6OmaeL85M&index=2">Installing Python 3 - How to install/use both Python 2 and Python 3</a></h4></blockquote>
                 <div class="caption">
                   <p>Installing Python 3 - How to install/use both Python 2 and Python 3</p>
-                  <p>
-                    <button>Add to my list!</button>
-                   
-                  </p>
+                    <form method = "post" action = "<?php $_PHP_SELF ?>">
+                    <input type="hidden" name="url" id ="url" value="python1.php">
+                    <input type="hidden" name="videoname" id ="videoname" value=" Installing Python 3">
+                    <input name = "update" type = "submit"  id = "update" value = "Add to my list!"> 
+                   </form>
                 </div>
             </div>
         </div>
