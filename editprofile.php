@@ -36,7 +36,7 @@ require('layout/header.php');
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                      <li>
-                        <a href="index.php">Home</a>
+                        <a href="lihomepage.php">Home</a>
                     </li>
                     <li>
                         <a href="about.php">About</a>

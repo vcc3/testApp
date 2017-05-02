@@ -22,29 +22,7 @@ class User extends Password{
 		    echo '<p class="bg-danger">'.$e->getMessage().'</p>';
 		}
 	}
- public function update($first_name,$last_name,$bio){
- 
-    try {
-      $user= $_SESSION['username'];        
-      $stmt = $this->_db->prepare('UPDATE members SET first_name=:first, last_name=:last, info=:bio WHERE username=:username');
-      $stmt->execute(array(
-        ':first_name' => $first_name,
-        ':last_name' => $last_name,
-        ':bio' => $bio,
-        ':username' => $user
-        
-      ));
-      
 
-      //redirect to index page
-      header('Location: memberpage.php');
-      exit;
-  } catch(PDOException $e) {
-		    echo '<p class="bg-danger">'.$e->getMessage().'</p>';
-		}
-
-}
- 
 
 
 	public function login($username,$password){

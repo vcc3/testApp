@@ -102,7 +102,7 @@ require('layout/header.php');
 
                     
 
-                    <a href="index.php?controller=userController&action=c1" class="btn btn-default">Watch!</a>
+                       <a href="c1.php" class="btn btn-default">Watch!</a>
 
                   </p>
 
